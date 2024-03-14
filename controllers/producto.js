@@ -21,7 +21,7 @@ const postProducto = async(req, res) => {
 
     try {
         const producto = new Producto(datos)
-        Producto.save()
+        producto.save()
         console.log(producto)
         
     } catch (error) {
@@ -40,7 +40,7 @@ const putProducto = async(req, res) => {
     try {
         const producto = await Producto.findOne({ producto });
         if(producto){
-            const producto = await Producto.findOneAndUpdate({Producto: Producto},
+            const producto = await Producto.findOneAndUpdate({producto: producto},
                 {producto:producto, kilos:kilos,precioKilos:precioKilos})
                 mensaje = 'Actualizacion existosa'
         }else{
@@ -61,14 +61,14 @@ const deleteProducto = async (req, res) => {
     let mensaje = '';
 
     try {
-        const producto = await producto.findOne({Producto});
+        const producto = await Producto.findOne({Producto});
 
         if (producto) {
             // Si el cliente existe, procede a eliminarlo
-            await producto.findOneAndDelete({ producto });
+            await Producto.findOneAndDelete({producto});
             mensaje = 'Eliminación exitosa';
         } else {
-            mensaje = 'Prodcuto no encontrado';
+            mensaje = 'Producto no encontrado';
         }
     } catch (error) {
         mensaje = error.message || 'Error al eliminar el producto';
