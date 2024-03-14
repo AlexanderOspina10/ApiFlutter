@@ -2,14 +2,14 @@ const {Schema, model} = require('mongoose')
 
 const ProductoSchema = ({
 
- Producto:{
+ producto:{
         type: String,
         //required:[true, 'El producto es necesario']
         // unique:[true, 'El nombre ingresado ya existe en el sistema'],
         // required:[true, 'El nombre de cliente es requerido']
     },
 
-Kilos: {
+kilos: {
             type:Number,
             //required:[true, 'Los kilos son necesarios']
             // unique:true,
@@ -17,7 +17,7 @@ Kilos: {
             //min:[10, 'El telefono debe contener minimo 10 caracteres'],
             //max:[12, 'El telefono debe contener maximo 12 caracteres']
         },
- PrecioKilos: {
+ precioKilos: {
             type:Number,
            //required:[true, 'El precio del kilo es necesario']
             // unique:true,
