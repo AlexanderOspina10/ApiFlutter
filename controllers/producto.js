@@ -38,9 +38,9 @@ const putProducto = async(req, res) => {
     const {producto, kilos, precioKilos, precioDolar} = req.body //DESESTRUCTURAR
     let mensaje = ''
     try {
-        const id = await Producto.findOne({ id });
+        const id = await Producto.findOne({producto});
         if(producto){
-            const id = await Producto.findOneAndUpdate({id: id},
+            const id = await Producto.findOneAndUpdate({producto:producto},
                 {producto:producto, kilos:kilos,precioKilos:precioKilos, precioDolar:precioDolar})
                 mensaje = 'Actualizacion existosa'
         }else{
@@ -57,15 +57,15 @@ const putProducto = async(req, res) => {
 }
 
 const deleteProducto = async (req, res) => { 
-    const {id} = req.body; // DESESTRUCTURAR
+    const {producto} = req.body; // DESESTRUCTURAR
     let mensaje = '';
 
     try {
-        const id = await Producto.findOne({id});
+        const producto = await Producto.findOne({producto});
 
-        if (id) {
+        if (producto) {
             // Si el cliente existe, procede a eliminarlo
-            await Producto.findOneAndDelete({id});
+            await Producto.findOneAndDelete({producto});
             mensaje = 'Eliminación exitosa';
         } else {
             mensaje = 'Producto no encontrado';
