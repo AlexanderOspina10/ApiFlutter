@@ -1,10 +1,10 @@
 const {response} = require('express');
 const producto = require('../models/producto');
 
-Producto = require('../models/producto')
+Productos = require('../models/producto')
 
 const getProducto = async(req, res) => {
-    const producto =  await Producto.find(); //OBTENER TODOS LOS DATOS DE LA COLLECCION
+    const producto =  await Productos.find(); //OBTENER TODOS LOS DATOS DE LA COLLECCION
     res.json({
         msg:producto
     })
@@ -20,7 +20,7 @@ const postProducto = async(req, res) => {
     let mensaje = 'Insercción exitosa'
 
     try {
-        const producto = new Producto(datos)
+        const producto = new Productos(datos)
         producto.save()
         console.log(producto)
         
@@ -38,9 +38,9 @@ const putProducto = async(req, res) => {
     const {producto, kilos, precioKilos, precioDolar} = req.body //DESESTRUCTURAR
     let mensaje = ''
     try {
-        const id = await Producto.findOne({producto});
+        const producto = await Productos.findOne({producto});
         if(producto){
-            const id = await Producto.findOneAndUpdate({producto:producto},
+            const producto = await Productos.findOneAndUpdate({producto:producto},
                 {producto:producto, kilos:kilos,precioKilos:precioKilos, precioDolar:precioDolar})
                 mensaje = 'Actualizacion existosa'
         }else{
@@ -61,7 +61,7 @@ const deleteProducto = async (req, res) => {
     let mensaje = '';
 
     try {
-        const producto = await Producto.findOne({producto});
+        const producto = await Productos.findOne({producto});
 
         if (producto) {
             // Si el cliente existe, procede a eliminarlo
